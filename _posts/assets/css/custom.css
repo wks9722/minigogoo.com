@@ -1,58 +1,79 @@
-/* --- MiniGo 收納誌 客製化三色主題 --- */
+/* --- MiniGo 收納誌 客製化三色主題 (專家修訂版) --- */
 
-/* 定義顏色變數 */
+/* 顏色定義 */
 :root {
-  --color-primary: rgb(81, 231, 196); /* 亮綠色：主要強調色 (R81 G231 B196) */
-  --color-secondary: rgb(166, 241, 247); /* 淺藍綠色：背景/次要強調色 (R166 G241 B247) */
-  --color-accent: rgb(234, 138, 113); /* 暖橙色：滑鼠懸停/行動呼籲色 (R234 G138 B113) */
-  --color-text-dark: #333;
+  --color-warm-orange: rgb(234, 138, 113); /* #ea8a71 - 主要行動色 (CTA, Links, Headings) */
+  --color-light-cool: rgb(166, 241, 247); /* #a6f1f7 - 區域背景色 (Footer, Intro Box) */
+  --color-bright-green: rgb(81, 231, 196); /* #51e7c4 - 次要裝飾色 (Borders, Blockquotes) */
+  --color-text-dark: #333; /* 主文字顏色 */
+  --color-text-light: #fff; /* 淺色背景上的文字顏色 */
 }
 
-/* 覆蓋 Clean Blog 的主要色彩 */
-
-/* 1. 連結顏色 */
+/* 1. 全局連結與強調色 (使用暖橙色作為主要焦點) */
 a {
-  color: var(--color-primary); /* 預設連結使用亮綠色 */
+  color: var(--color-warm-orange); 
+  transition: color 0.3s ease;
 }
-
 a:focus, a:hover {
-  color: var(--color-accent); /* 滑鼠懸停使用暖橙色 */
+  color: var(--color-bright-green); /* Hover使用亮綠色增加趣味性 */
 }
 
-/* 2. 導覽列文字和按鈕 */
-.navbar-custom .nav li a:focus, .navbar-custom .nav li a:hover {
-  color: var(--color-accent);
+/* 2. 標題顏色 (讓標題更突出) */
+.post-title a:focus, .post-title a:hover {
+    color: var(--color-warm-orange);
 }
 
-/* 3. 標題/副標題顏色 (讓標題更突出) */
-.post-heading h1 {
-  color: var(--color-text-dark);
+/* 3. 頁腳 (Footer) 顏色 (大面積運用淺藍綠色，強調清新感) */
+footer {
+    background-color: var(--color-light-cool);
+    border-top: 1px solid var(--color-bright-green); /* 加上亮綠色邊線 */
+    padding: 30px 0;
 }
-.post-heading .subheading, .post-heading .meta {
-  color: #666;
+footer .list-inline>li>a {
+    color: var(--color-text-dark); /* 社群圖標顏色 */
 }
-
-/* 4. 底部選單和分頁按鈕 */
-.pager li>a, .pager li>a:focus, .pager li>a:hover {
-    background-color: var(--color-secondary); /* 淺藍綠色作為背景 */
-    color: var(--color-text-dark);
-    border-color: var(--color-secondary);
-    transition: background-color 0.3s ease;
+footer .list-inline>li>a:hover {
+    color: var(--color-warm-orange); /* 社群圖標懸停顏色 */
 }
 
+/* 4. 分頁按鈕 (Pager) 顏色 (使用暖橙色作為按鈕主色) */
+.pager li>a, .pager li>a:focus {
+    background-color: var(--color-text-light);
+    color: var(--color-warm-orange);
+    border: 2px solid var(--color-warm-orange);
+    transition: all 0.3s ease;
+}
 .pager li>a:hover, .pager li>a:focus:hover {
-    background-color: var(--color-primary); /* 亮綠色作為懸停背景 */
-    color: white;
-    border-color: var(--color-primary);
+    background-color: var(--color-warm-orange); /* 懸停時填滿顏色 */
+    color: var(--color-text-light);
+    border-color: var(--color-warm-orange);
 }
 
-/* 5. 確保頁面內容中的超連結和強調文字符合三色主題 */
+/* 5. 區塊引用 (Blockquote) 與代碼 (使用亮綠色作為次要裝飾) */
 blockquote {
-    border-left: 5px solid var(--color-primary);
+    border-left: 5px solid var(--color-bright-green); 
+    color: var(--color-text-dark);
+    opacity: 0.85;
+}
+code {
+    background-color: var(--color-light-cool);
     color: var(--color-text-dark);
 }
 
-code {
-    background-color: var(--color-secondary);
-    color: var(--color-text-dark);
+/* 6. 首頁 Intro Box 樣式優化 (與 index.html 配合) */
+.mini-intro-box {
+    background-color: var(--color-light-cool) !important; /* 淺藍綠色背景 */
+    border: 1px solid var(--color-bright-green) !important; /* 亮綠色邊框 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* 增加陰影，提升質感 */
+}
+.mini-intro-box h3 {
+    color: var(--color-warm-orange) !important; /* 標題使用暖橙色，突出焦點 */
+}
+.mini-intro-box p a {
+    color: var(--color-warm-orange) !important; /* 確保 '了解更多' 連結使用暖橙色 */
+}
+
+/* 7. 導覽列 (Navbar) 懸停效果 */
+.navbar-custom .nav li a:focus, .navbar-custom .nav li a:hover {
+  color: var(--color-warm-orange); /* 使用暖橙色作為懸停效果 */
 }
