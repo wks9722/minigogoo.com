@@ -1,1 +1,58 @@
+/* --- MiniGo 收納誌 客製化三色主題 --- */
 
+/* 定義顏色變數 */
+:root {
+  --color-primary: rgb(81, 231, 196); /* 亮綠色：主要強調色 (R81 G231 B196) */
+  --color-secondary: rgb(166, 241, 247); /* 淺藍綠色：背景/次要強調色 (R166 G241 B247) */
+  --color-accent: rgb(234, 138, 113); /* 暖橙色：滑鼠懸停/行動呼籲色 (R234 G138 B113) */
+  --color-text-dark: #333;
+}
+
+/* 覆蓋 Clean Blog 的主要色彩 */
+
+/* 1. 連結顏色 */
+a {
+  color: var(--color-primary); /* 預設連結使用亮綠色 */
+}
+
+a:focus, a:hover {
+  color: var(--color-accent); /* 滑鼠懸停使用暖橙色 */
+}
+
+/* 2. 導覽列文字和按鈕 */
+.navbar-custom .nav li a:focus, .navbar-custom .nav li a:hover {
+  color: var(--color-accent);
+}
+
+/* 3. 標題/副標題顏色 (讓標題更突出) */
+.post-heading h1 {
+  color: var(--color-text-dark);
+}
+.post-heading .subheading, .post-heading .meta {
+  color: #666;
+}
+
+/* 4. 底部選單和分頁按鈕 */
+.pager li>a, .pager li>a:focus, .pager li>a:hover {
+    background-color: var(--color-secondary); /* 淺藍綠色作為背景 */
+    color: var(--color-text-dark);
+    border-color: var(--color-secondary);
+    transition: background-color 0.3s ease;
+}
+
+.pager li>a:hover, .pager li>a:focus:hover {
+    background-color: var(--color-primary); /* 亮綠色作為懸停背景 */
+    color: white;
+    border-color: var(--color-primary);
+}
+
+/* 5. 確保頁面內容中的超連結和強調文字符合三色主題 */
+blockquote {
+    border-left: 5px solid var(--color-primary);
+    color: var(--color-text-dark);
+}
+
+code {
+    background-color: var(--color-secondary);
+    color: var(--color-text-dark);
+}
