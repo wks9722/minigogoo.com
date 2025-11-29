@@ -1,3 +1,11 @@
+<header class="intro-header" style="background-image: url('{{ site.header.background }}')">
+  <div class="container text-center">
+    <div class="site-heading">
+        <h1>MiniGo 收納誌</h1>
+        <span class="subheading">分享整理術、斷捨離與簡約生活</span>
+    </div>
+  </div>
+</header>
 <div class="container">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -8,6 +16,33 @@
             </p>
             <p style="text-align: right; margin-bottom: 0;"><a href="{{ site.baseurl }}/about.html">了解更多關於 MiniGo →</a></p>
         </div>
+        {% for post in site.posts %}
+          <div class="post-preview">
+             <a href="{{ post.url | prepend: site.baseurl }}">
+                 <h2 class="post-title">{{ post.title }}</h2>
+                 {% if post.subtitle %}
+                     <h3 class="post-subtitle">{{ post.subtitle }}</h3>
+                 {% endif %}
+             </a>
+             <p class="post-meta">Posted by {{ post.author }} on {{ post.date | date: "%B %-d, %Y" }}</p>
+          </div>
+          <hr>
+        {% endfor %}
+
+        {% if paginator.total_pages > 1 %}
+          <ul class="pager">
+              {% if paginator.previous_page %}
+              <li class="previous">
+                  <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+              </li>
+              {% endif %}
+              {% if paginator.next_page %}
+              <li class="next">
+                  <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+              </li>
+              {% endif %}
+          </ul>
+        {% endif %}
     </div>
   </div>
 </div>
