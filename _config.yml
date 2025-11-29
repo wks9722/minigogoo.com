@@ -3,6 +3,18 @@ description: "分享簡約生活、整理術與收納技巧"
 url: "https://minigogoo.com"
 baseurl: ""   # 你使用 apex domain → 必須為空
 
+# 新增此區塊，用於覆蓋 Clean Blog 的基礎顏色設定
+
+# 客製化主題變數 (Brand Color 會影響連結、按鈕等)
+theme_color: '#ea8a71' # 暖橙色 (R234 G138 B113) 作為主色
+
+# 輔助顏色 (影響導覽列顏色等)
+invert_navbar: true # 讓導覽列背景變色
+
+# 請檢查您的 _config.yml 檔案
+# 確保以下這段被註釋掉或移除，避免衝突：
+# theme_color: '#2196F3' # <-- 這是 Clean Blog 的預設藍色，請移除或註釋
+
 author:
   name: "MiniGo"
 
