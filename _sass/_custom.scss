@@ -1,0 +1,18 @@
+/* --- MiniGo 收納誌 客製化三色主題 (最終修正版) --- */
+
+/* 顏色定義 */
+$warm-orange: rgb(234, 138, 113); 
+$light-cool: rgb(166, 241, 247); 
+$bright-green: rgb(81, 231, 196); 
+$text-dark: #333; 
+$text-light: #fff; 
+
+/* 1. 全局連結與強調色 (使用暖橙色作為主要焦點) */
+a {
+  color: $warm-orange !important; 
+  transition: color 0.3s ease;
+}
+a:focus, a:hover {
+  color: $bright-green !important;
+}
+// ... (將之前的所有 SCSS 內容完整貼上) ...
