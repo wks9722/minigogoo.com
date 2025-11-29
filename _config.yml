@@ -25,9 +25,6 @@ header:
 sass:
   style: compressed
 
-include:
-  - assets/css
-
 social:
   email: ""
   instagram: ""
