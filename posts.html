@@ -1,0 +1,12 @@
+---
+layout: page
+title: 所有文章 (Posts)
+permalink: /posts/
+---
+
+{% for post in site.posts %}
+  <div class="post-item">
+    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+    <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+  </div>
+{% endfor %}
