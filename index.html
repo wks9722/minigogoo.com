@@ -1,0 +1,63 @@
+---
+layout: home
+---
+
+<div class="container">
+  <div class="row">
+    
+    <div class="col-lg-8 col-md-12 mx-auto">
+      {% for post in site.posts %}
+      <div class="post-preview">
+        <a href="{{ post.url }}">
+          {% if post.categories.size > 0 %}
+          <span class="post-meta-categories">
+            {{ post.categories | join: ', ' }}
+          </span>
+          {% endif %}
+          
+          <h2 class="post-title">
+            {{ post.title }}
+          </h2>
+        </a>
+        
+        <p class="post-meta">
+          Published by <a href="#">{{ post.author | default: site.author.name }}</a> 
+          on {{ post.date | date: "%Y年%-m月%-d日" }}
+        </p>
+
+        {% if post.header.overlay_image %}
+        <a href="{{ post.url }}">
+          <img src="{{ post.header.overlay_image }}" alt="{{ post.title }}" class="post-featured-image">
+        </a>
+        {% endif %}
+
+        {% if post.subtitle %}
+        <p class="post-subtitle font-italic">
+          {{ post.subtitle }}
+        </p>
+        {% endif %}
+        
+        <a href="{{ post.url }}" class="continue-reading-link">
+          Continue reading →
+        </a>
+      </div>
+      <hr class="my-5"> 
+      {% endfor %}
+
+      <div class="clearfix">
+        {% if paginator.previous_page %}
+        <a class="btn btn-primary float-left" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+        {% endif %}
+        {% if paginator.next_page %}
+        <a class="btn btn-primary float-right" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-12 h-100 sidebar">
+      {% include sidebar-about.html %}
+      {% include sidebar-recent-posts.html %}
+    </div>
+
+  </div>
+</div>
