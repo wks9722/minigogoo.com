@@ -41,7 +41,8 @@ layout: home
           Continue reading →
         </a>
       </div>
-      <hr class="my-5"> {% endfor %}
+      <hr class="my-5"> 
+      {% endfor %}
 
       <div class="clearfix">
         {% if paginator.previous_page %}
@@ -51,42 +52,12 @@ layout: home
         <a class="btn btn-primary float-right" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
         {% endif %}
       </div>
-    </div><div class="col-lg-4 col-md-12 h-100 sidebar">
-      {% include sidebar-about.html %}
-      {% include sidebar-social.html %}
-      {% include sidebar-newsletter.html %}
-      {% include sidebar-recent-posts.html %}
-    </div></div></div>```
-
----
-
-### 步驟四：移除舊版首頁大圖 (可選但推薦)
-
-您目前的主題在首頁上方有一個巨大的背景圖 (Hero Image)。為了達到您想要的那種清爽、直接進入內容的排版，建議將其移除。
-
-這需要建立一個新的 `home` 佈局來覆蓋舊的。
-
-1.  在您的 **`_layouts/`** 資料夾中，建立一個新檔案 **`home.html`**。
-2.  貼上以下內容（這是一個沒有大圖 Header 的基礎佈局）：
-
-```html
-<!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-
-  {% include head.html %}
-
-  <body>
-
-    {% include navbar.html %}
-
-    <div class="main-content-wrapper" style="padding-top: 100px;"> {{ content }}
     </div>
 
-    <hr>
+    <div class="col-lg-4 col-md-12 h-100 sidebar">
+      {% include sidebar-about.html %}
+      {% include sidebar-recent-posts.html %}
+    </div>
 
-    {% include footer.html %}
-
-    {% include scripts.html %}
-
-  </body>
-</html>
+  </div>
+</div>
