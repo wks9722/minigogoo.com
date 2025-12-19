@@ -1,18 +1,224 @@
-/* --- MiniGo 收納誌 客製化三色主題 (最終修正版) --- */
+// =========================================
+// 您的品牌色彩定義
+// =========================================
+$brand-white:    rgb(255, 255, 255); // 白色背景
+$brand-teal:     rgb(50, 156, 155);  // 深青色 (主標題、強調色)
+$brand-cyan:     rgb(141, 194, 202); // 淺青色 (次要元素)
+$brand-coral:    rgb(236, 107, 85);  // 珊瑚紅 (按鈕、連結互動)
 
-/* 顏色定義 */
-$warm-orange: rgb(234, 138, 113); 
-$light-cool: rgb(166, 241, 247); 
-$bright-green: rgb(81, 231, 196); 
-$text-dark: #333; 
-$text-light: #fff; 
+// 基礎文字顏色設定
+$text-color:       #333;             // 一般內文顏色
+$heading-color:    $brand-teal;      // 標題顏色使用深青色
+$link-color:       $brand-coral;     // 連結顏色使用珊瑚紅
+$link-hover-color: darken($brand-coral, 15%); // 連結滑鼠經過時變深
 
-/* 1. 全局連結與強調色 (使用暖橙色作為主要焦點) */
-a {
-  color: $warm-orange !important; 
-  transition: color 0.3s ease;
+// =========================================
+// 首頁特定樣式 (Homepage Styles)
+// =========================================
+
+// 1. 首頁文章區塊樣式
+.post-preview {
+  border-bottom: none !important; // 移除舊主題的底線
+  margin-bottom: 3rem;
+
+  // 文章分類 (如: CRAFTS, DIY)
+  .post-meta-categories {
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: $brand-cyan;
+    margin-bottom: 0.5rem;
+    display: block;
+    a {
+      color: $brand-cyan !important;
+      text-decoration: none;
+      &:hover { color: $brand-teal !important; }
+    }
+  }
+
+  // 文章標題
+  .post-title {
+    font-family: "Playfair Display", serif; // 範例中的優雅襯線字體
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $heading-color !important;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  // 發布資訊 (日期、作者)
+  .post-meta {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    a { color: $text-color !important; text-decoration: none; }
+  }
+
+  // 特色大圖
+  .post-featured-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); // 輕微陰影增加質感
+  }
+
+  // "繼續閱讀" 連結
+  .continue-reading-link {
+    display: inline-block;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    color: $brand-coral !important;
+    text-decoration: none;
+    border-bottom: 2px solid $brand-coral;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: darken($brand-coral, 10%) !important;
+      border-bottom-color: darken($brand-coral, 10%);
+    }
+  }
 }
-a:focus, a:hover {
-  color: $bright-green !important;
+
+// 2. 側邊欄樣式 (Sidebar Styles)
+.sidebar {
+  padding-left: 2rem; // 與左側內容保持距離
+
+  // 側邊欄小工具通用標題
+  .widget-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: $heading-color;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+    &:first-child { margin-top: 0; }
+  }
+
+  // "關於我" 小工具
+  .widget-about {
+    text-align: center;
+    .about-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      border: 3px solid $brand-cyan; // 頭像外框
+    }
+    .about-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: $text-color;
+    }
+  }
+
+  // "社群連結" 小工具
+  .widget-social {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        margin-bottom: 0.8rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.8rem;
+        a {
+          color: $text-color;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          font-weight: 500;
+          i { // FontAwesome 圖標
+            margin-right: 10px;
+            color: $brand-teal;
+            width: 20px;
+            text-align: center;
+          }
+          &:hover { color: $brand-coral; }
+        }
+        &:last-child { border-bottom: none; }
+      }
+    }
+  }
+
+  // "電子報訂閱" 小工具 (深色區塊)
+  .widget-newsletter {
+    background-color: $brand-teal; // 使用您的深青色作為背景
+    color: $brand-white;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 4px;
+
+    .widget-title {
+      color: $brand-white;
+      border-bottom: none;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+    }
+    .btn-subscribe { // 模擬按鈕樣式
+      display: inline-block;
+      background-color: transparent;
+      color: $brand-white;
+      border: 2px solid $brand-white;
+      padding: 0.5rem 1.5rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s;
+      &:hover {
+        background-color: $brand-white;
+        color: $brand-teal;
+      }
+    }
+  }
+
+  // "最新文章" 小工具
+  .widget-recent-posts {
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        display: flex;
+        margin-bottom: 1.2rem;
+        align-items: flex-start;
+        .recent-post-thumbnail {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+          border-radius: 4px;
+          margin-right: 1rem;
+        }
+        .recent-post-info {
+          h5 {
+            font-size: 1rem;
+            margin: 0 0 0.3rem 0;
+            line-height: 1.3;
+            a {
+              color: $text-color;
+              text-decoration: none;
+              &:hover { color: $brand-coral; }
+            }
+          }
+          small { color: #999; }
+        }
+      }
+    }
+  }
 }
-// ... (將之前的所有 SCSS 內容完整貼上) ...
+
+// 調整整體容器上方間距，因為我們移除了大圖 Header
+.container {
+  margin-top: 3rem;
+}
