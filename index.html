@@ -1,53 +1,92 @@
 ---
-layout: home
-title: MiniGo 收納誌
+layout: default
 ---
 
-<header class="intro-header">
-  <div class="container text-center">
-    <div class="site-heading">
-        <h1>MiniGo 收納誌</h1>
-        <span class="subheading">分享整理術、斷捨離與簡約生活</span>
-    </div>
-  </div>
-</header>
 <div class="container">
   <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="mini-intro-box" style="padding: 20px; margin-bottom: 40px; border-radius: 5px;">
-            <h3 style="margin-top: 0;">✨ 讓生活空間煥然一新 ✨</h3>
-            <p>
-                歡迎來到 MiniGo！這裡致力於分享最高效的收納技巧、最實用的整理術，以及實現極簡生活的哲學。從今天起，告別混亂，迎接清晰、美好的居家環境。
-            </p>
-            <p style="text-align: right; margin-bottom: 0;"><a href="{{ site.baseurl }}/about.html">了解更多關於 MiniGo →</a></p>
-        </div>
-        {% for post in site.posts %}
-          <div class="post-preview">
-             <a href="{{ post.url | prepend: site.baseurl }}">
-                 <h2 class="post-title">{{ post.title }}</h2>
-                 {% if post.subtitle %}
-                     <h3 class="post-subtitle">{{ post.subtitle }}</h3>
-                 {% endif %}
-             </a>
-             <p class="post-meta">Posted by {{ post.author }} on {{ post.date | date: "%B %-d, %Y" }}</p>
-          </div>
-          <hr>
-        {% endfor %}
+    
+    <div class="col-lg-8 col-md-12 mx-auto">
+      {% for post in site.posts %}
+      <div class="post-preview">
+        <a href="{{ post.url }}">
+          {% if post.categories.size > 0 %}
+          <span class="post-meta-categories">
+            {{ post.categories | join: ', ' }}
+          </span>
+          {% endif %}
+          
+          <h2 class="post-title">
+            {{ post.title }}
+          </h2>
+        </a>
+        
+        <p class="post-meta">
+          Published by <a href="#">{{ post.author | default: site.author.name }}</a> 
+          on {{ post.date | date: "%Y年%-m月%-d日" }}
+        </p>
 
-        {% if paginator.total_pages > 1 %}
-          <ul class="pager">
-              {% if paginator.previous_page %}
-              <li class="previous">
-                  <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-              </li>
-              {% endif %}
-              {% if paginator.next_page %}
-              <li class="next">
-                  <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-              </li>
-              {% endif %}
-          </ul>
+        {% if post.header.overlay_image %}
+        <a href="{{ post.url }}">
+          <img src="{{ post.header.overlay_image }}" alt="{{ post.title }}" class="post-featured-image">
+        </a>
         {% endif %}
+
+        {% if post.subtitle %}
+        <p class="post-subtitle font-italic">
+          {{ post.subtitle }}
+        </p>
+        {% endif %}
+        
+        <a href="{{ post.url }}" class="continue-reading-link">
+          Continue reading →
+        </a>
+      </div>
+      <hr class="my-5"> {% endfor %}
+
+      <div class="clearfix">
+        {% if paginator.previous_page %}
+        <a class="btn btn-primary float-left" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+        {% endif %}
+        {% if paginator.next_page %}
+        <a class="btn btn-primary float-right" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+        {% endif %}
+      </div>
+    </div><div class="col-lg-4 col-md-12 h-100 sidebar">
+      {% include sidebar-about.html %}
+      {% include sidebar-social.html %}
+      {% include sidebar-newsletter.html %}
+      {% include sidebar-recent-posts.html %}
+    </div></div></div>```
+
+---
+
+### 步驟四：移除舊版首頁大圖 (可選但推薦)
+
+您目前的主題在首頁上方有一個巨大的背景圖 (Hero Image)。為了達到您想要的那種清爽、直接進入內容的排版，建議將其移除。
+
+這需要建立一個新的 `home` 佈局來覆蓋舊的。
+
+1.  在您的 **`_layouts/`** 資料夾中，建立一個新檔案 **`home.html`**。
+2.  貼上以下內容（這是一個沒有大圖 Header 的基礎佈局）：
+
+```html
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+
+  {% include head.html %}
+
+  <body>
+
+    {% include navbar.html %}
+
+    <div class="main-content-wrapper" style="padding-top: 100px;"> {{ content }}
     </div>
-  </div>
-</div>
+
+    <hr>
+
+    {% include footer.html %}
+
+    {% include scripts.html %}
+
+  </body>
+</html>
