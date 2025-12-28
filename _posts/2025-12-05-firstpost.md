@@ -5,7 +5,8 @@ subtitle: 告別「用完即亂」的魔咒！ 學會用「動線思維」整理
 date: 2025-12-05 
 author: [HsinHua]
 tags: [收納, 習慣養成, 行為設計, 整理術, 居家生活]
-
+header:
+  overlay_image: /assets/img/sarah-dorweiler-9Z1KRIfpBTM-unsplash.jpg
 ---
 
 ## 引言：揭露痛點 (Why Change?)
