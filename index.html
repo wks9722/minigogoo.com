@@ -7,42 +7,63 @@ layout: home
     
     <div class="col-lg-8">
       {% for post in site.posts %}
-      <article class="mb-5 pb-5 border-bottom">
-        <h2 class="post-title">{{ post.title }}</h2>
-        
-        <div class="post-meta text-muted mb-3">
-          <small>Published by {{ post.author | default: "MiniGo" }} on {{ post.date | date: "%Y年%m月%d日" }}</small>
-        </div>
-
-        {% if post.header.overlay_image %}
-          <img src="{{ post.header.overlay_image }}" class="img-fluid post-featured-image" alt="{{ post.title }}">
+      <div class="post-preview"> {% if post.categories.size > 0 %}
+        <span class="post-meta-categories">
+          {{ post.categories | join: ', ' }}
+        </span>
         {% endif %}
 
-        <p class="post-excerpt">{{ post.content | strip_html | truncate: 120 }}</p>
+        <a href="{{ post.url }}">
+          <h2 class="post-title">{{ post.title }}</h2>
+        </a>
+        
+        <p class="post-meta">
+          Published by <a href="#">{{ post.author | default: "MiniGo" }}</a> 
+          on {{ post.date | date: "%Y年%m月%d日" }}
+        </p>
+
+        {% if post.header.overlay_image %}
+        <a href="{{ post.url }}">
+          <img src="{{ post.header.overlay_image }}" class="post-featured-image" alt="{{ post.title }}">
+        </a>
+        {% endif %}
+
+        <p class="post-subtitle">
+          {{ post.content | strip_html | truncate: 160 }}
+        </p>
         
         <a href="{{ post.url }}" class="continue-reading-link">Continue reading →</a>
-      </article>
+        
+      </div>
+      <hr class="my-5" style="border-top: 1px solid #eee;">
       {% endfor %}
     </div>
 
     <div class="col-lg-4 sidebar">
-      <div class="mb-5 text-center">
-        <h3 class="widget-title text-left">I'm MiniGo</h3>
-        <img src="/assets/img/avatar.jpg" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/150?text=MiniGo'">
-        <p>歡迎來到 MiniGo 收納誌。這裡分享整理術與簡約生活技巧，陪你一起打造舒心的空間。</p>
+      
+      <div class="widget-about mb-5">
+        <h3 class="widget-title">I'm MiniGo</h3>
+        <img src="/assets/img/avatar.jpg" class="about-avatar" onerror="this.src='https://via.placeholder.com/150?text=MiniGo'">
+        <p class="about-text">歡迎來到 MiniGo 收納誌。這裡分享整理術與簡約生活技巧，陪你一起打造舒心的空間。</p>
       </div>
 
-      <div class="mb-5">
+      <div class="widget-recent-posts mb-5">
         <h3 class="widget-title">Recent Posts</h3>
-        <ul class="list-unstyled">
+        <ul>
           {% for post in site.posts limit:3 %}
-            <li class="mb-3">
-              <a href="{{ post.url }}" class="text-dark font-weight-bold" style="text-decoration:none;">{{ post.title }}</a><br>
-              <small class="text-muted">{{ post.date | date: "%Y年%m月%d日" }}</small>
+            <li>
+              {% if post.header.overlay_image %}
+              <img src="{{ post.header.overlay_image }}" class="recent-post-thumbnail">
+              {% endif %}
+              <div class="recent-post-info">
+                <h5><a href="{{ post.url }}">{{ post.title }}</a></h5>
+                <small>{{ post.date | date: "%Y年%m月%d日" }}</small>
+              </div>
             </li>
           {% endfor %}
         </ul>
       </div>
+
     </div>
 
   </div>
