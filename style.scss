@@ -1,49 +1,87 @@
 ---
 ---
-// 1. 定義顏色變數 (方便後續統一修改)
+/* 核心設計原則：簡約、呼吸感、功能導向
+  不使用 @import，直接定義樣式，確保 GitHub Actions 100% 成功
+*/
+
 :root {
-  --primary-color: #329C9B; // 深青色
-  --accent-color: #EC6B55;  // 珊瑚紅
+  --primary-color: #329C9B; // 深青色 (你的核心品牌色)
+  --accent-color: #EC6B55;  // 珊瑚紅 (點綴色)
+  --text-dark: #333333;
+  --bg-light: #f8f9fa;
 }
 
-// 2. 第一個建議：優化「第一眼」視覺比例 (Above-the-Fold)
+/* 1. 導覽列：簡約且固定 */
+#mainNav {
+  position: sticky !important;
+  top: 0 !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #eee;
+  z-index: 1000;
+}
+
+/* 2. 第一眼比例優化：精確的 45vh */
 header.masthead {
-  // 將高度限制在螢幕的 45%，讓下方的文章能露出一點頭，引導閱讀
-  height: 45vh !important; 
+  height: 45vh !important;
   min-height: 350px !important;
-  margin-bottom: 0;
-  background-color: #333;
   background-size: cover !important;
   background-position: center !important;
+  margin-bottom: 3rem !important;
   display: flex;
   align-items: center;
   position: relative;
 
-  // 增加半透明遮罩：解決圖片太大、太亮導致文字看不清的問題
+  // 加上簡約深色遮罩，提升文字質感
   &::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.3); // 30% 的黑，增加簡約高級感
+    background: rgba(0, 0, 0, 0.25);
     z-index: 1;
   }
 }
 
-// 確保標題文字在遮罩上方
-header.masthead .site-heading, 
-header.masthead .post-heading {
+header.masthead .site-heading {
   z-index: 2;
-  position: relative;
+  padding: 0 15px;
 }
 
-// 3. 全域簡約風格優化
-h1, h2, h3, .post-title {
-  color: var(--primary-color) !important;
-  font-weight: 700;
+/* 3. 文章列表：增加留白 (UX 呼吸感) */
+.post-preview {
+  margin-bottom: 2rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+
+  a {
+    text-decoration: none;
+    color: var(--text-dark);
+    &:hover h2 {
+      color: var(--primary-color) !important;
+    }
+  }
 }
 
-// 確保圖片不會撐破網頁（解決您說的網頁很怪的問題）
+/* 4. 側邊欄優化：既然沒有照片，就用線條營造層次 */
+.sidebar-section {
+  border-left: 3px solid var(--primary-color);
+  padding-left: 20px;
+  margin-top: 2rem;
+  
+  h3 {
+    font-size: 1.2rem;
+    color: var(--primary-color) !important;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+  }
+}
+
+/* 5. 修正圖片過大問題 */
 img {
-  max-width: 100%;
-  height: auto;
+  max-width: 100% !important;
+  height: auto !important;
 }
