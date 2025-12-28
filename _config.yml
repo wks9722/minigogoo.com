@@ -1,7 +1,7 @@
 title: "MiniGo 收納誌"
 description: "分享簡約生活、整理術與收納技巧"
 url: "https://minigogoo.com"
-baseurl: ""   # 你使用 apex domain → 必須為空
+baseurl: ""
 
 # 請檢查您的 _config.yml 檔案
 # 確保以下這段被註釋掉或移除，避免衝突：
