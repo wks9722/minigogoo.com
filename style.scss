@@ -34,3 +34,33 @@ img {
 h1, h2, h3, .post-title {
   color: var(--primary-color) !important;
 }
+
+/* 1. 讓選單更有質感 */
+nav.navbar {
+  position: sticky !important;
+  top: 0;
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #eee;
+}
+
+/* 2. 限制頂部圖片高度，避免視覺壓迫 */
+header.masthead {
+  height: 45vh !important;
+  min-height: 300px;
+}
+
+/* 3. 優化側邊欄文字感 */
+.sidebar-section h3 {
+  font-family: 'Playfair Display', serif; /* 建議在 HTML 引入此字體 */
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+/* 4. 移除破圖後的排版修正 */
+.sidebar-section p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: #666;
+}
