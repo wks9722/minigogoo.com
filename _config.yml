@@ -15,6 +15,7 @@ highlighter: rouge
 
 permalink: /:categories/:title/
 
+theme: null
 remote_theme: startbootstrap/startbootstrap-clean-blog-jekyll
 
 paginate: 5
