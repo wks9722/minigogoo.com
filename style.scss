@@ -1,22 +1,36 @@
 ---
 ---
-// 直接在這裡寫入你的自定義配色，不透過 @import 避免路徑錯誤
+// 1. 基礎配色
 :root {
-  --primary-color: #329C9B;   // 深青色 (R50 G156 B155)
-  --accent-color: #EC6B55;    // 珊瑚紅 (R236 G107 B85)
-  --light-bg: #8DC2CA;        // 淺青色 (R141 G194 B202)
+  --primary-color: #329C9B; // 深青色
+  --accent-color: #EC6B55;  // 珊瑚紅
 }
 
-body {
-  color: #333;
+// 2. 導覽列長駐最上方 (Sticky Header)
+// 根據您 image_9c37ae.png 的選單樣式進行固定
+nav.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95); // 半透明白色背景
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);      // 增加一點陰影更有層次感
 }
 
-// 修正標題顏色
-h1, h2, h3, h4, h5, h6 {
+// 3. 解決圖片過大導致網頁奇怪的問題
+header.masthead {
+  max-height: 500px;           // 限制頂部圖片高度，避免過大
+  overflow: hidden;
+  background-size: cover;      // 強制圖片填滿區域不變形
+  background-position: center; // 圖片居中對齊
+}
+
+// 確保所有圖片不會超出螢幕寬度
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// 修正標題配色
+h1, h2, h3, .post-title {
   color: var(--primary-color) !important;
-}
-
-// 修正按鈕或連結顏色
-a {
-  color: var(--accent-color);
 }
