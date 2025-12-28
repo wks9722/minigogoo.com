@@ -1,8 +1,6 @@
 ---
 ---
-// 1. 載入主題核心樣式
-// 注意：請確保這裡寫的是 "clean-blog" 而不是 "main"
-@import "clean-blog";
+// 不需要 @import "clean-blog"，因為主題會自動載入它的 CSS
+// 我們直接載入你的自定義配色
 
-// 2. 載入您的自定義配色
 @import "custom";
