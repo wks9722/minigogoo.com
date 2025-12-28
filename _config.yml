@@ -15,7 +15,7 @@ highlighter: rouge
 
 permalink: /:categories/:title/
 
-remote_theme: StartBootstrap/startbootstrap-clean-blog-jekyll
+remote_theme: startbootstrap/startbootstrap-clean-blog-jekyll
 
 paginate: 5
 paginate_path: "/page:num/"
@@ -27,6 +27,7 @@ header:
   background: "/assets/img/sarah-dorweiler-9Z1KRIfpBTM-unsplash.jpg"
 
 sass:
+  sass_dir: _sass
   style: compressed
 
 social:
