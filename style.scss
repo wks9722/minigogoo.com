@@ -1,66 +1,82 @@
 ---
 ---
-// 1. 基礎配色
+// ==========================================
+// 1. 核心配色與變數
+// ==========================================
 :root {
   --primary-color: #329C9B; // 深青色
   --accent-color: #EC6B55;  // 珊瑚紅
+  --bg-white: rgba(255, 255, 255, 0.9);
 }
 
-// 2. 導覽列長駐最上方 (Sticky Header)
-// 根據您 image_9c37ae.png 的選單樣式進行固定
-nav.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.95); // 半透明白色背景
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);      // 增加一點陰影更有層次感
+// ==========================================
+// 2. 導覽列優化 (修正 Sticky 失敗問題)
+// ==========================================
+#mainNav {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1050;
+  background: var(--bg-white) !important;
+  backdrop-filter: blur(10px); // 毛玻璃效果
+  border-bottom: 1px solid #eee;
+  transition: all 0.3s ease;
 }
 
-// 3. 解決圖片過大導致網頁奇怪的問題
+// ==========================================
+// 3. 解決圖片過大（UX 優化：黃金比例）
+// ==========================================
 header.masthead {
-  max-height: 500px;           // 限制頂部圖片高度，避免過大
-  overflow: hidden;
-  background-size: cover;      // 強制圖片填滿區域不變形
-  background-position: center; // 圖片居中對齊
+  height: 45vh !important; // 限制高度在螢幕的 45%
+  min-height: 350px !important;
+  margin-bottom: 0;
+  background-color: #333;
+  background-size: cover !important;
+  background-position: center !important;
+  // 加入遮罩，確保標題清晰
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.2); 
+  }
 }
 
-// 確保所有圖片不會超出螢幕寬度
-img {
-  max-width: 100%;
-  height: auto;
+// ==========================================
+// 4. 側邊欄 UX 優化 (移除破圖後的排版)
+// ==========================================
+.sidebar-section {
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color) !important;
+    border-left: 4px solid var(--accent-color); // 側邊點綴色
+    padding-left: 10px;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #555;
+    text-align: justify;
+  }
 }
 
-// 修正標題配色
+// ==========================================
+// 5. 全域文字優化
+// ==========================================
 h1, h2, h3, .post-title {
   color: var(--primary-color) !important;
 }
 
-/* 1. 讓選單更有質感 */
-nav.navbar {
-  position: sticky !important;
-  top: 0;
-  background: rgba(255, 255, 255, 0.8) !important;
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid #eee;
-}
-
-/* 2. 限制頂部圖片高度，避免視覺壓迫 */
-header.masthead {
-  height: 45vh !important;
-  min-height: 300px;
-}
-
-/* 3. 優化側邊欄文字感 */
-.sidebar-section h3 {
-  font-family: 'Playfair Display', serif; /* 建議在 HTML 引入此字體 */
-  border-bottom: 2px solid var(--primary-color);
-  display: inline-block;
-  margin-bottom: 15px;
-}
-
-/* 4. 移除破圖後的排版修正 */
-.sidebar-section p {
-  font-size: 0.9rem;
-  line-height: 1.8;
-  color: #666;
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  &:hover {
+    color: var(--primary-color);
+  }
 }
