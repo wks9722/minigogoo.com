@@ -1,6 +1,22 @@
 ---
 ---
-// 不需要 @import "clean-blog"，因為主題會自動載入它的 CSS
-// 我們直接載入你的自定義配色
+// 直接在這裡寫入你的自定義配色，不透過 @import 避免路徑錯誤
+:root {
+  --primary-color: #329C9B;   // 深青色 (R50 G156 B155)
+  --accent-color: #EC6B55;    // 珊瑚紅 (R236 G107 B85)
+  --light-bg: #8DC2CA;        // 淺青色 (R141 G194 B202)
+}
 
-@import "custom";
+body {
+  color: #333;
+}
+
+// 修正標題顏色
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color) !important;
+}
+
+// 修正按鈕或連結顏色
+a {
+  color: var(--accent-color);
+}
