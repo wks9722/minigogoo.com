@@ -1,82 +1,49 @@
 ---
 ---
-// ==========================================
-// 1. 核心配色與變數
-// ==========================================
+// 1. 定義顏色變數 (方便後續統一修改)
 :root {
   --primary-color: #329C9B; // 深青色
   --accent-color: #EC6B55;  // 珊瑚紅
-  --bg-white: rgba(255, 255, 255, 0.9);
 }
 
-// ==========================================
-// 2. 導覽列優化 (修正 Sticky 失敗問題)
-// ==========================================
-#mainNav {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 1050;
-  background: var(--bg-white) !important;
-  backdrop-filter: blur(10px); // 毛玻璃效果
-  border-bottom: 1px solid #eee;
-  transition: all 0.3s ease;
-}
-
-// ==========================================
-// 3. 解決圖片過大（UX 優化：黃金比例）
-// ==========================================
+// 2. 第一個建議：優化「第一眼」視覺比例 (Above-the-Fold)
 header.masthead {
-  height: 45vh !important; // 限制高度在螢幕的 45%
+  // 將高度限制在螢幕的 45%，讓下方的文章能露出一點頭，引導閱讀
+  height: 45vh !important; 
   min-height: 350px !important;
   margin-bottom: 0;
   background-color: #333;
   background-size: cover !important;
   background-position: center !important;
-  // 加入遮罩，確保標題清晰
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  // 增加半透明遮罩：解決圖片太大、太亮導致文字看不清的問題
   &::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.2); 
+    background: rgba(0, 0, 0, 0.3); // 30% 的黑，增加簡約高級感
+    z-index: 1;
   }
 }
 
-// ==========================================
-// 4. 側邊欄 UX 優化 (移除破圖後的排版)
-// ==========================================
-.sidebar-section {
-  padding: 20px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  
-  h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--primary-color) !important;
-    border-left: 4px solid var(--accent-color); // 側邊點綴色
-    padding-left: 10px;
-    margin-bottom: 15px;
-  }
-
-  p {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: #555;
-    text-align: justify;
-  }
+// 確保標題文字在遮罩上方
+header.masthead .site-heading, 
+header.masthead .post-heading {
+  z-index: 2;
+  position: relative;
 }
 
-// ==========================================
-// 5. 全域文字優化
-// ==========================================
+// 3. 全域簡約風格優化
 h1, h2, h3, .post-title {
   color: var(--primary-color) !important;
+  font-weight: 700;
 }
 
-a {
-  color: var(--accent-color);
-  text-decoration: none;
-  &:hover {
-    color: var(--primary-color);
-  }
+// 確保圖片不會撐破網頁（解決您說的網頁很怪的問題）
+img {
+  max-width: 100%;
+  height: auto;
 }
