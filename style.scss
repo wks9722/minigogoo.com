@@ -1,71 +1,69 @@
 ---
 ---
-/* 1. 定義品牌四色 */
-$color-primary: #0B867E;   // 深青色 (R11 G134 B126)
-$color-secondary: #98C8CD; // 淺青色 (R152 G200 B205)
-$color-accent: #C92539;    // 深紅色 (R201 G37 B57)
-$color-neutral: #D2AF9D;   // 膚色/沙色 (R210 G175 B157)
+/* 品牌定義色 */
+$color-deep-cyan: #0B867E;   /* R11 G134 B126 */
+$color-light-cyan: #98C8CD;  /* R152 G200 B205 */
+$color-red: #C92539;         /* R201 G37 B57 */
+$color-sand: #D2AF9D;        /* R210 G175 B157 */
 
-/* 2. 導覽列：毛玻璃效果 (建議 3) */
-#mainNav {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.7) !important;
-  backdrop-filter: blur(10px); /* 毛玻璃 */
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba($color-neutral, 0.3);
-}
-
-/* 3. 第一眼比例優化 (建議 1 & 2) */
+/* 1 & 2. 視覺比例與遮罩 (Above-the-Fold) */
 header.masthead {
-  height: 45vh !important; /* 限制高度在 45% (40-50vh 之間) */
+  height: 45vh !important;       /* 限制高度 40%-50% */
   min-height: 350px !important;
-  background-size: cover !important; /* 確保圖片不重複，撐滿容器 */
+  background-size: cover !important;    /* 解決圖片重複問題 */
   background-repeat: no-repeat !important;
   background-position: center !important;
   position: relative;
   display: flex;
   align-items: center;
 
-  /* 20% 深青色遮罩 */
   &::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(11, 134, 126, 0.2); /* 深青色遮罩 20% */
+    background: rgba(11, 134, 126, 0.2); /* 20% 深青色遮罩 */
     z-index: 1;
   }
 }
 header.masthead .site-heading { z-index: 2; position: relative; }
 
-/* 4. 文章間距優化 (建議 7) */
-.post-preview {
-  margin-bottom: 80px !important; /* 每個文章間隔 80px */
-  padding-bottom: 40px;
-  border-bottom: 1px solid #f0f0f0;
+/* 3. 毛玻璃導覽列 (Glassmorphism) */
+#mainNav {
+  position: sticky !important;
+  top: 0 !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(10px) !important; /* 毛玻璃效果 */
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba($color-sand, 0.3);
+  z-index: 1000;
 }
 
-/* 5. 側邊欄簽名檔 (建議 5) */
+/* 5. 側邊欄文字設計 (Typography) */
 .sidebar-section h3 {
-  font-family: "Georgia", serif; /* 襯線體，營造簽名感 */
+  font-family: "Playfair Display", "Georgia", serif !important; /* 襯線體簽名感 */
   font-style: italic;
-  color: $color-primary !important;
-  border-bottom: 2px solid $color-neutral;
-  display: inline-block;
+  color: $color-deep-cyan !important;
+  border-bottom: 2px solid $color-sand;
 }
 
-/* 6. 熱門文章序號 (建議 6) */
+/* 6. 熱門文章功能性 (紅色序號) */
 .hot-posts-list {
-  list-style: none;
-  padding: 0;
-  li {
-    margin-bottom: 15px;
-    &::before {
-      content: "•";
-      color: $color-accent; /* 使用深紅色作為標記 */
-      font-weight: bold;
-      margin-right: 10px;
-    }
+  list-style: none; padding: 0;
+  li::before {
+    content: "●";
+    color: $color-red; /* 珊瑚紅序號 */
+    margin-right: 10px;
   }
 }
+
+/* 7. 文章呼吸間距 */
+.post-preview {
+  margin-bottom: 80px !important; /* 增加間距 */
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 40px;
+}
+
+/* 全域主色調應用 */
+h1, h2, h3, .post-title { color: $color-deep-cyan !important; }
+a { color: $color-deep-cyan; transition: 0.3s; }
+a:hover { color: $color-red; text-decoration: none; }
