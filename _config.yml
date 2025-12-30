@@ -27,8 +27,6 @@ plugins:
 header:
   background: "/assets/img/sarah-dorweiler-9Z1KRIfpBTM-unsplash.jpg"
 
-sass:
-  sass_dir: _sass
   style: compressed
 
 social:
