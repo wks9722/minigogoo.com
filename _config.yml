@@ -42,3 +42,14 @@ exclude:
   - "package.json"
   - "gulpfile.js"
   - "package-lock.json"
+
+  # 導覽列選單文字修改
+navigation:
+  - title: 首頁
+    url: /
+  - title: 收納技巧
+    url: /posts.html
+  - title: 簡約生活
+    url: /about.html
+  - title: 關於我
+    url: /about.html
