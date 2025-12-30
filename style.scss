@@ -1,87 +1,71 @@
 ---
 ---
-/* 核心設計原則：簡約、呼吸感、功能導向
-  不使用 @import，直接定義樣式，確保 GitHub Actions 100% 成功
-*/
+/* 1. 定義品牌四色 */
+$color-primary: #0B867E;   // 深青色 (R11 G134 B126)
+$color-secondary: #98C8CD; // 淺青色 (R152 G200 B205)
+$color-accent: #C92539;    // 深紅色 (R201 G37 B57)
+$color-neutral: #D2AF9D;   // 膚色/沙色 (R210 G175 B157)
 
-:root {
-  --primary-color: #329C9B; // 深青色 (你的核心品牌色)
-  --accent-color: #EC6B55;  // 珊瑚紅 (點綴色)
-  --text-dark: #333333;
-  --bg-light: #f8f9fa;
-}
-
-/* 1. 導覽列：簡約且固定 */
+/* 2. 導覽列：毛玻璃效果 (建議 3) */
 #mainNav {
   position: sticky !important;
   top: 0 !important;
-  background: rgba(255, 255, 255, 0.9) !important;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #eee;
   z-index: 1000;
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(10px); /* 毛玻璃 */
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba($color-neutral, 0.3);
 }
 
-/* 2. 第一眼比例優化：精確的 45vh */
+/* 3. 第一眼比例優化 (建議 1 & 2) */
 header.masthead {
-  height: 45vh !important;
+  height: 45vh !important; /* 限制高度在 45% (40-50vh 之間) */
   min-height: 350px !important;
-  background-size: cover !important;
+  background-size: cover !important; /* 確保圖片不重複，撐滿容器 */
+  background-repeat: no-repeat !important;
   background-position: center !important;
-  margin-bottom: 3rem !important;
+  position: relative;
   display: flex;
   align-items: center;
-  position: relative;
 
-  // 加上簡約深色遮罩，提升文字質感
+  /* 20% 深青色遮罩 */
   &::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(11, 134, 126, 0.2); /* 深青色遮罩 20% */
     z-index: 1;
   }
 }
+header.masthead .site-heading { z-index: 2; position: relative; }
 
-header.masthead .site-heading {
-  z-index: 2;
-  padding: 0 15px;
+/* 4. 文章間距優化 (建議 7) */
+.post-preview {
+  margin-bottom: 80px !important; /* 每個文章間隔 80px */
+  padding-bottom: 40px;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-/* 3. 文章列表：增加留白 (UX 呼吸感) */
-.post-preview {
-  margin-bottom: 2rem;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid #f0f0f0;
+/* 5. 側邊欄簽名檔 (建議 5) */
+.sidebar-section h3 {
+  font-family: "Georgia", serif; /* 襯線體，營造簽名感 */
+  font-style: italic;
+  color: $color-primary !important;
+  border-bottom: 2px solid $color-neutral;
+  display: inline-block;
+}
 
-  a {
-    text-decoration: none;
-    color: var(--text-dark);
-    &:hover h2 {
-      color: var(--primary-color) !important;
+/* 6. 熱門文章序號 (建議 6) */
+.hot-posts-list {
+  list-style: none;
+  padding: 0;
+  li {
+    margin-bottom: 15px;
+    &::before {
+      content: "•";
+      color: $color-accent; /* 使用深紅色作為標記 */
+      font-weight: bold;
+      margin-right: 10px;
     }
   }
-}
-
-/* 4. 側邊欄優化：既然沒有照片，就用線條營造層次 */
-.sidebar-section {
-  border-left: 3px solid var(--primary-color);
-  padding-left: 20px;
-  margin-top: 2rem;
-  
-  h3 {
-    font-size: 1.2rem;
-    color: var(--primary-color) !important;
-    margin-bottom: 10px;
-  }
-  p {
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.6;
-  }
-}
-
-/* 5. 修正圖片過大問題 */
-img {
-  max-width: 100% !important;
-  height: auto !important;
 }
