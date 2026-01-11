@@ -1,93 +1,87 @@
 ---
 ---
 /* =========================================
-   軟體工程師的強制修復指令
+   MiniGo 收納誌 - UI/UX 核心樣式修復
    ========================================= */
 
-/* 1. 針對「照片過大且重複」的終極修正 */
+/* 1. 解決「照片重複」與「比例失控」問題 */
 header.masthead {
-    /* 強制設定高度為螢幕的 45%，解決佔比 50% 以上的問題 */
-    height: 20vh !important;
-    min-height: 350px !important; /* 手機版最小高度 */
+    /* 依設計建議設定高度為螢幕 30%，保持輕盈感 */
+    height: 30vh !important;
+    min-height: 280px !important; 
 
-    /* 關鍵指令：讓圖片「覆蓋」整個區域，而不是用原始尺寸撐開 */
-    background-size: cover !important;
+    /* 強制讀取新上傳的照片，並防止重複 */
+    background-image: url('/assets/img/my-header.jpg') !important;
+    background-size: cover !important;         /* 裁切填充，不留白 */
+    background-repeat: no-repeat !important;   /* 禁止四張重複圖出現 */
+    background-position: center !important;    /* 圖片重心置中 */
     
-    /* 關鍵指令：絕對不準重複播放圖片 */
-    background-repeat: no-repeat !important;
-    
-    /* 讓圖片焦點維持在正中央 */
-    background-position: center center !important;
-    
-    /* 確保定位正確，不跑版 */
     position: relative;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 50px; /* 與下方內容保持距離 */
+    margin-bottom: 40px;
 
-    /* UI優化：加上一層半透明黑色遮罩，確保任何圖片上的白字都清晰可見 */
+    /* 20% 深青色遮罩：優化品牌感並讓標題清晰 */
     &::before {
         content: "";
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0, 0, 0, 0.3); /* 30% 透明度黑色 */
+        background: rgba(11, 134, 126, 0.2); 
         z-index: 1;
     }
 }
 
-/* 確保標題文字浮在遮罩上方 */
+/* 確保標題浮在遮罩上 */
 header.masthead .container {
     z-index: 2;
     position: relative;
     text-align: center;
 }
 
+/* 2. 徹底解決「首頁文章顯示巨大縮圖」問題 */
+/* 依照您的要求，強制隱藏文章列表中的所有圖片 */
+.post-preview img {
+    display: none !important;
+}
+
 /* =========================================
-   UI/UX 設計師的版面優化
+   UI/UX 品牌美化
    ========================================= */
 
-/* 品牌色定義 */
 $brand-cyan: #0B867E;
 $brand-red: #C92539;
 
-/* 全域字體顏色優化 */
 body {
-    color: #444; /*比起純黑，深灰色閱讀更舒適*/
+    color: #444;
 }
 
-h1, h2, h3, h4, h5, h6, .subheading {
-    color: $brand-cyan !important; /* 統一標題色彩 */
+/* 標題與連結統一使用品牌深青色 */
+h1, h2, h3, .post-title {
+    color: $brand-cyan !important;
     font-weight: 700;
 }
 
-/* 導覽列優化：毛玻璃效果 */
-#mainNav {
-    background: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-/* 文章列表優化：增加呼吸感 */
-.post-preview {
-    padding: 30px 0;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 30px;
-}
-
-/* 連結互動優化 */
 a {
     color: $brand-cyan;
+    text-decoration: none;
     transition: 0.3s;
     &:hover {
         color: $brand-red;
-        text-decoration: none;
     }
 }
 
-/* 確保文章內的圖片永遠不會超出邊界 */
-img {
-    max-width: 100%;
-    height: auto;
+/* 導覽列：毛玻璃質感 */
+#mainNav {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* 增加文章間距的呼吸感 */
+.post-preview {
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
