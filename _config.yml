@@ -8,24 +8,22 @@ author:
 
 markdown: kramdown
 highlighter: rouge
-permalink: /:categories/:title/
-
 theme: null
 remote_theme: startbootstrap/startbootstrap-clean-blog-jekyll
 
-paginate: 5
-paginate_path: "/page:num/"
 plugins:
   - jekyll-paginate
   - jekyll-remote-theme
 
-# 修正後的 Header 設定
+# 1. 修正圖片路徑
 header:
   background: "/assets/img/my-header.jpg"
 
-# 修正後的 Sass 設定 (因為您刪除了 _sass 資料夾，只需保留這行)
+# 2. 修正 SASS 語法 (確保這一行左邊沒有空格)
 sass:
   style: compressed
+
+# (其餘 social, navigation 等保持原樣即可)
 
 social:
   github: "https://github.com/wks9722"
