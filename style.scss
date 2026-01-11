@@ -1,77 +1,93 @@
 ---
 ---
-/* 品牌定義色 (RGB 轉換) */
-$brand-red: #C92539;        /* R201 G37 B57 */
-$brand-sand: #D2AF9D;       /* R210 G175 B157 */
-$brand-light-cyan: #98C8CD; /* R152 G200 B205 */
-$brand-deep-cyan: #0B867E;  /* R11 G134 B126 */
+/* =========================================
+   軟體工程師的強制修復指令
+   ========================================= */
 
-/* 1 & 2. 第一眼比例與 20% 遮罩 (Above-the-Fold) */
+/* 1. 針對「照片過大且重複」的終極修正 */
 header.masthead {
-  height: 45vh !important;       /* 限制在螢幕 45% */
-  min-height: 350px !important;
-  background-size: cover !important;     /* 解決圖片重複問題 */
-  background-repeat: no-repeat !important; 
-  background-position: center !important;
-  position: relative;
-  display: flex;
-  align-items: center;
+    /* 強制設定高度為螢幕的 45%，解決佔比 50% 以上的問題 */
+    height: 20vh !important;
+    min-height: 350px !important; /* 手機版最小高度 */
 
-  /* 深青色 20% 遮罩 */
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(11, 134, 126, 0.2); 
-    z-index: 1;
-  }
-}
-header.masthead .site-heading { z-index: 2; position: relative; }
+    /* 關鍵指令：讓圖片「覆蓋」整個區域，而不是用原始尺寸撐開 */
+    background-size: cover !important;
+    
+    /* 關鍵指令：絕對不準重複播放圖片 */
+    background-repeat: no-repeat !important;
+    
+    /* 讓圖片焦點維持在正中央 */
+    background-position: center center !important;
+    
+    /* 確保定位正確，不跑版 */
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px; /* 與下方內容保持距離 */
 
-/* 3. 毛玻璃導覽列 (Glassmorphism) */
-#mainNav {
-  position: sticky !important;
-  top: 0 !important;
-  background: rgba(255, 255, 255, 0.7) !important;
-  backdrop-filter: blur(10px) !important; /* 毛玻璃 */
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba($brand-sand, 0.5);
-  z-index: 1000;
-}
-
-/* 7. 文章呼吸間距 */
-.post-preview {
-  margin-bottom: 80px !important; /* 每個文章間隔 80px */
-  padding-bottom: 40px;
-  border-bottom: 1px solid rgba($brand-sand, 0.2);
-}
-
-/* 5. 側邊欄文字設計 (Typography) */
-.sidebar-section h3 {
-  font-family: "Georgia", serif !important; /* 襯線體簽名感 */
-  font-style: italic;
-  font-weight: bold;
-  color: $brand-deep-cyan !important;
-  border-bottom: 2px solid $brand-sand;
-  padding-bottom: 5px;
-}
-
-/* 6. 熱門文章功能性 (珊瑚紅序號) */
-.hot-posts-list {
-  list-style: none; padding: 0; margin-top: 15px;
-  li {
-    margin-bottom: 12px;
-    font-size: 0.95rem;
+    /* UI優化：加上一層半透明黑色遮罩，確保任何圖片上的白字都清晰可見 */
     &::before {
-      content: "•";
-      color: $brand-red; /* 珊瑚紅序號 */
-      font-weight: bold;
-      margin-right: 8px;
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.3); /* 30% 透明度黑色 */
+        z-index: 1;
     }
-  }
 }
 
-/* 全域主色應用 */
-h1, h2, h3, .post-title { color: $brand-deep-cyan !important; }
-a { color: $brand-deep-cyan; transition: 0.3s; text-decoration: none; }
-a:hover { color: $brand-red; }
+/* 確保標題文字浮在遮罩上方 */
+header.masthead .container {
+    z-index: 2;
+    position: relative;
+    text-align: center;
+}
+
+/* =========================================
+   UI/UX 設計師的版面優化
+   ========================================= */
+
+/* 品牌色定義 */
+$brand-cyan: #0B867E;
+$brand-red: #C92539;
+
+/* 全域字體顏色優化 */
+body {
+    color: #444; /*比起純黑，深灰色閱讀更舒適*/
+}
+
+h1, h2, h3, h4, h5, h6, .subheading {
+    color: $brand-cyan !important; /* 統一標題色彩 */
+    font-weight: 700;
+}
+
+/* 導覽列優化：毛玻璃效果 */
+#mainNav {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* 文章列表優化：增加呼吸感 */
+.post-preview {
+    padding: 30px 0;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 30px;
+}
+
+/* 連結互動優化 */
+a {
+    color: $brand-cyan;
+    transition: 0.3s;
+    &:hover {
+        color: $brand-red;
+        text-decoration: none;
+    }
+}
+
+/* 確保文章內的圖片永遠不會超出邊界 */
+img {
+    max-width: 100%;
+    height: auto;
+}
