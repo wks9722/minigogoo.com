@@ -10,8 +10,7 @@ header.masthead {
     height: 30vh !important;
     min-height: 280px !important; 
 
-    /* 強制讀取新上傳的照片，並防止重複 */
-    background-image: url('/assets/img/my-header.jpg') !important;
+   background-image: url('{{ "/assets/img/my-header.jpg" | relative_url }}') !important;
     background-size: cover !important;         /* 裁切填充，不留白 */
     background-repeat: no-repeat !important;   /* 禁止四張重複圖出現 */
     background-position: center !important;    /* 圖片重心置中 */
