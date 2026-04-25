@@ -6,7 +6,7 @@ date: 2026-03-02
 author: [HsinHua]
 tags: [整理術, 居家生活, 伸縮桿]
 header:
-  overlay_image: /assets/img/header-bg.jpg # 建議放一張封面圖路徑，若無則刪除此行
+
 ---
 
 ## 引言
